@@ -28,3 +28,6 @@ src/plugins/
 *.njsproj
 *.sln
 *.sw?
+
+# Nix build files
+result

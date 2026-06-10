@@ -1,0 +1,15 @@
+diff --git a/scripts/setup-assets.cjs b/scripts/setup-assets.cjs
+index d9acc11..97c40c8 100644
+--- a/scripts/setup-assets.cjs
++++ b/scripts/setup-assets.cjs
+@@ -13,7 +13,9 @@ async function setupAssets() {
+ 		await copyKTeXFonts();
+ 		await copyDetypifyAssets();
+ 		await copyTypstAssets();
+-		await downloadCoreAssets();
++		// Nix doesn't enable Internet access during the build phase
++		// Those dependencies are instead downloaded in the nix fetch phase in ./nix/package.nix
++		// await downloadCoreAssets();
+ 
+ 		console.log('\n✅ Asset setup complete');
+ 	} catch (err) {
