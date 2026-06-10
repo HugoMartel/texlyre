@@ -38,6 +38,7 @@
             packages = with pkgs; [
               nodejs
               yarn
+              biome
               typescript-language-server
             ];
           };
@@ -72,10 +73,8 @@
             programs = {
               # Nix formatter
               nixfmt.enable = true;
-              # Python formatter
-              ruff-format = {
-                enable = true;
-              };
+              # Js/Ts formatter
+              # TODO: use biome like in package.json
             };
           };
         in

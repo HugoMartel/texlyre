@@ -1,13 +1,9 @@
 {
   lib,
   fetchFromGitHub,
-  # stdenv,
-  # fetchYarnDeps,
-  # yarnConfigHook,
-  # yarnBuildHook,
   buildNpmPackage,
   nodejs,
-  biome
+  biome,
 }:
 
 let
@@ -73,7 +69,6 @@ buildNpmPackage (finalAttrs: {
   nativeBuildInputs = [
     biome
   ];
-  
 
   # Make sure to use a statically linked version of biome rather than
   # the default dynamically linked one after the `npm install` that will not work.
@@ -106,42 +101,3 @@ buildNpmPackage (finalAttrs: {
     maintainers = [ ];
   };
 })
-
-
-# stdenv.mkDerivation (finalAttrs: {
-#   pname = "texlyre";
-#   version = "0.8.0";
-
-#   src = ../.;
-
-#   yarnOfflineCache = fetchYarnDeps {
-#     yarnLock = finalAttrs.src + "/yarn.lock";
-#     hash = "sha256-U6VxwVTfjlLF2BUNR+C9dusSwxSlbd+IbWjhC9KMqJs=";
-#   };
-
-#   # Make sure to use the statically linked version of biome rather than
-#   # the default dynamically linked one after the `yarn install`.
-#   # TODO: find a better system for systems other than linux
-#   postConfigure = ''
-#     # rm "./node_modules/.bin/biome"
-#     # ln --symbolic "./node_modules/@biomejs/cli-linux-x64-musl/biome" "./node_modules/.bin/biome"
-#     # rm "${finalAttrs.src}/node_modules/.bin/biome"
-#     # ln --symbolic "${finalAttrs.src}/node_modules/@biomejs/cli-linux-x64-musl/biome" "${finalAttrs.src}/node_modules/.bin/biome"
-#   '';
-
-#   yarnBuildScript = "build:prod";
-#   yarnBuildFlags = "";
-
-#   nativeBuildInputs = [
-#     yarnConfigHook
-#     yarnBuildHook
-#     nodejs
-#   ];
-
-#   installPhase = ''
-#     mkdir -p $out
-#     cp -R dist/* $out
-#   '';
-
-#   # NODE_OPTIONS = "--openssl-legacy-provider"; # TODO: check if needed
-# })
