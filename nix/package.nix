@@ -90,8 +90,8 @@ buildNpmPackage (finalAttrs: {
   npmPackFlags = [ "--ignore-scripts" ];
 
   installPhase = ''
-    mkdir -p $out
-    cp -R dist/* $out
+    mkdir -p $out/texlyre
+    cp -R dist/* $out/texlyre/
   '';
 
   meta = {
